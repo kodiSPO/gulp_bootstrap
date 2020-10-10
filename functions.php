@@ -21,3 +21,9 @@ add_action('wp_enqueue_scripts', function() {
 //    $version = '1.0.0';
 //    wp_enqueue_style('admin-css', $url . 'admin.css', array(), $version);
 //});
+
+
+add_theme_support( 'menus' );
+
+
+

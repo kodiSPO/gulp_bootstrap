@@ -11,25 +11,6 @@ const uglify       = require('gulp-uglify');
 const livereload   = require('gulp-livereload');
 
 
-gulp.task('default', function() {
-    livereload.listen();
-    gulp.watch([
-        './css/**/*.{css,scss}',
-        './templates/**/*.scss',
-        './blocks/**/*.scss'
-    ], gulp.series(
-        'css'
-    ));
-    gulp.watch([
-        './js/**/*.js',
-        './templates/**/*.js',
-        './blocks/**/*.js'
-    ], gulp.series(
-        'js',
-    ));
-});
-
-
 gulp.task('css', function () {
     return gulp.src([
         './css/plugins/**/*.{css,scss}',
@@ -63,3 +44,25 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./dist'))
         .pipe(livereload());
 });
+
+
+gulp.task('default', function() {
+    livereload.listen();
+    gulp.watch([
+        './css/**/*.{css,scss}',
+        './templates/**/*.scss',
+        './blocks/**/*.scss'
+    ], gulp.series(
+        'css'
+    ));
+    gulp.watch([
+        './js/**/*.js',
+        './templates/**/*.js',
+        './blocks/**/*.js'
+    ], gulp.series(
+        'js',
+    ));
+});
+
+
+gulp.task('build', gulp.series('css', 'js'));
