@@ -7,7 +7,7 @@ const sourcemaps   = require('gulp-sourcemaps');
 const concat       = require('gulp-concat');
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS     = require('gulp-clean-css');
-const uglify       = require('gulp-uglify');
+const terser       = require('gulp-terser');
 const livereload   = require('gulp-livereload');
 
 
@@ -39,7 +39,7 @@ gulp.task('js', function () {
     ])
         .pipe(sourcemaps.init())
         .pipe(concat('theme.min.js'))
-        .pipe(uglify())
+        .pipe(terser())
         .pipe(sourcemaps.write('./map'))
         .pipe(gulp.dest('./dist'))
         .pipe(livereload());

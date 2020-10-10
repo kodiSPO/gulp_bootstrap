@@ -9,6 +9,8 @@ add_action('wp_enqueue_scripts', function() {
         // css
         wp_enqueue_style('theme-css', $dist . 'theme.min.css', array(), $version);
         // js
+        wp_deregister_script('jquery');
+        wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', array(), null);
         wp_enqueue_script('theme-js', $dist . 'theme.min.js', array('jquery'), $version, true);
     }
 });
@@ -24,6 +26,31 @@ add_action('wp_enqueue_scripts', function() {
 
 
 add_theme_support( 'menus' );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
