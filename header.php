@@ -25,7 +25,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <ul class="navbar-nav ml-auto"
-                        data-hover="false"
+                        data-hover="true"
                         data-detect-overflow="true"
                     >
                         <li><a href="#">Home</a></li>
