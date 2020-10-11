@@ -1,5 +1,33 @@
 (function($) {
 
+    $('.navbar-nav a[href="#"]').on('click', function(e) {
+        e.preventDefault();
+    });
+
+    function copyParentLink() {
+        if ($('.navbar-nav').data('copy-parent-link') === true) {
+            if ($(window).width() >= 992) {
+                $('.copied-parent-link').remove();
+            } else {
+                $('.navbar-nav .dropdown-toggle').each(function() {
+                    let menu = $(this).siblings('.dropdown-menu');
+                    if ($(this).attr('href') != '#' && !menu.find('.copied-parent-link').length) {
+                        let parentLinkWrapper = $('<li class="copied-parent-link"></li>');
+                        let parentLink = $('<a></a>');
+                        parentLink
+                            .text($(this).text())
+                            .attr('href', $(this).attr('href'));
+                        if ($(this).attr('target')) {
+                            parentLink.attr('target', $(this).attr('target'));
+                        }
+                        parentLinkWrapper.prepend(parentLink);
+                        menu.prepend(parentLinkWrapper);
+                    }
+                });
+            }
+        }
+    }
+
     function setInitDropdownPosition() {
         if ($(window).width() >= 992) {
             $('.navbar-nav .dropdown-menu').css({visibility: 'hidden', display: 'block'});
@@ -9,7 +37,7 @@
                 if (!dropdown.parent().hasClass('navbar-nav')) {
                     let windowEdge   = $(window).width();
                     let dropdownEdge = dropdown.offset().left + dropdown.outerWidth() + menu.outerWidth();
-                    if ($('.navbar-nav').data('detect-overflow') && dropdownEdge > windowEdge) {
+                    if ($('.navbar-nav').data('detect-overflow') === true && dropdownEdge > windowEdge) {
                         dropdown.removeClass('dropdown dropright').addClass('dropleft');
                     } else {
                         dropdown.removeClass('dropdown dropleft').addClass('dropright');
@@ -59,6 +87,7 @@
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
             setInitDropdownPosition();
+            copyParentLink();
             resetNavbar();
             bindNavbar();
             if ($('.navbar-nav').data('hover') === true && $(window).width() >= 992) {

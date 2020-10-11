@@ -27,6 +27,7 @@
                     <ul class="navbar-nav ml-auto"
                         data-hover="true"
                         data-detect-overflow="true"
+                        data-copy-parent-link="true"
                     >
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Link</a></li>
@@ -38,16 +39,16 @@
                                 <li><a href="#">Another action</a></li>
 
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" href="#">
-                                        Something else here
+                                    <a class="dropdown-toggle" href="https://google.com" target="_blank">
+                                        Google link
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Action</a></li>
                                         <li><a href="#">Another action</a></li>
 
                                         <li class="dropdown">
-                                            <a class="dropdown-toggle" href="#">
-                                                Something else here
+                                            <a class="dropdown-toggle" href="https://linkedin.com">
+                                                Linkedin
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#">Action</a></li>
