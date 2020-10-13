@@ -1,32 +1,12 @@
 <?php
-/**
- * Enqueue scripts and styles
-*/
-add_action('wp_enqueue_scripts', function() {
-    if (!is_admin()) {
-        $dist    = get_template_directory_uri() . '/dist/';
-        $version = '1.0.0';
-        // css
-        wp_enqueue_style('theme-css', $dist . 'theme.min.css', array(), $version);
-        // js
-        wp_deregister_script('jquery');
-        wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', array(), null);
-        wp_enqueue_script('theme-js', $dist . 'theme.min.js', array('jquery'), $version, true);
-    }
-});
+require_once 'inc/wp_fixes.php';
+require_once 'inc/BootstrapWalker.php';
+require_once 'inc/enqueue.php';
 
 /**
- * Enqueue admin scripts and styles
+ * Add custom image sizes
  */
-//add_action( 'admin_enqueue_scripts', function() {
-//    $url     = get_template_directory_uri() . '/admin/';
-//    $version = '1.0.0';
-//    wp_enqueue_style('admin-css', $url . 'admin.css', array(), $version);
-//});
-
-
-add_theme_support( 'menus' );
-
+// add_image_size('case-preview-865-450', 865, 450, true);
 
 /**
  * Register navigation menus
@@ -36,168 +16,115 @@ register_nav_menus(array(
 //    'footer_nav'   => 'Footer navigation',
 ));
 
-// Walker_Nav_Menu
-class BootstrapWalker extends Walker_Nav_Menu
-{
-    public function start_lvl(&$output, $depth = 0, $args = array()) {
-        $output .= "\n<ul class=\"dropdown-menu\">\n";
-    }
-
-    public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 )
-    {
-        if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
-            $t = '';
-            $n = '';
-        } else {
-            $t = "\t";
-            $n = "\n";
-        }
-        $indent = ( $depth ) ? str_repeat( $t, $depth ) : '';
-
-        $classes   = empty( $item->classes ) ? array() : (array) $item->classes;
-//        $classes[] = 'menu-item-' . $item->ID;
-        if (in_array('menu-item-has-children', $classes)) {
-            $classes[] = 'dropdown';
-        }
-
-        /**
-         * Filters the arguments for a single nav menu item.
-         *
-         * @since 4.4.0
-         *
-         * @param stdClass $args  An object of wp_nav_menu() arguments.
-         * @param WP_Post  $item  Menu item data object.
-         * @param int      $depth Depth of menu item. Used for padding.
-         */
-        $args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
-
-        /**
-         * Filters the CSS classes applied to a menu item's list item element.
-         *
-         * @since 3.0.0
-         * @since 4.1.0 The `$depth` parameter was added.
-         *
-         * @param string[] $classes Array of the CSS classes that are applied to the menu item's `<li>` element.
-         * @param WP_Post  $item    The current menu item.
-         * @param stdClass $args    An object of wp_nav_menu() arguments.
-         * @param int      $depth   Depth of menu item. Used for padding.
-         */
-        $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
-
-        $class_names = preg_replace('/(^|\s)(menu-item)(?!-has)(\S+)?/', '', $class_names);
-        $class_names = preg_replace('/(^|\s)?(current_)?(page[-_]item)(\S+)?/', '', $class_names);
-        $class_names = str_replace('current-menu-parent', '', $class_names);
-
-        $class_names = str_replace('current-menu-item', 'current', $class_names);
-        $class_names = str_replace('menu-item-has-children', 'has-children', $class_names);
-        $class_names = str_replace('current-menu-ancestor', 'current-parent', $class_names);
-
-        $class_names = preg_replace('/\s+/', ' ', $class_names);
-        $class_names = trim($class_names, ' ');
-
-        $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
-
-        /**
-         * Filters the ID applied to a menu item's list item element.
-         *
-         * @since 3.0.1
-         * @since 4.1.0 The `$depth` parameter was added.
-         *
-         * @param string   $menu_id The ID that is applied to the menu item's `<li>` element.
-         * @param WP_Post  $item    The current menu item.
-         * @param stdClass $args    An object of wp_nav_menu() arguments.
-         * @param int      $depth   Depth of menu item. Used for padding.
-         */
-//        $id = apply_filters( 'nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args, $depth );
-//        $id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
-
-//        $output .= $indent . '<li' . $id . $class_names . '>';
-        $output .= $indent . '<li'  . $class_names . '>';
-
-        $atts           = array();
-        $atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
-        $atts['target'] = ! empty( $item->target ) ? $item->target : '';
-        if ( '_blank' === $item->target && empty( $item->xfn ) ) {
-            $atts['rel'] = 'noopener noreferrer';
-        } else {
-            $atts['rel'] = $item->xfn;
-        }
-        $atts['href']         = ! empty( $item->url ) ? $item->url : '';
-        $atts['aria-current'] = $item->current ? 'page' : '';
-
-        /**
-         * Filters the HTML attributes applied to a menu item's anchor element.
-         *
-         * @since 3.6.0
-         * @since 4.1.0 The `$depth` parameter was added.
-         *
-         * @param array $atts {
-         *     The HTML attributes applied to the menu item's `<a>` element, empty strings are ignored.
-         *
-         *     @type string $title        Title attribute.
-         *     @type string $target       Target attribute.
-         *     @type string $rel          The rel attribute.
-         *     @type string $href         The href attribute.
-         *     @type string $aria_current The aria-current attribute.
-         * }
-         * @param WP_Post  $item  The current menu item.
-         * @param stdClass $args  An object of wp_nav_menu() arguments.
-         * @param int      $depth Depth of menu item. Used for padding.
-         */
-        $atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
-
-        $attributes = '';
-        foreach ( $atts as $attr => $value ) {
-            if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
-                $value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
-                $attributes .= ' ' . $attr . '="' . $value . '"';
-            }
-        }
-
-        /** This filter is documented in wp-includes/post-template.php */
-        $title = apply_filters( 'the_title', $item->title, $item->ID );
-
-        /**
-         * Filters a menu item's title.
-         *
-         * @since 4.4.0
-         *
-         * @param string   $title The menu item's title.
-         * @param WP_Post  $item  The current menu item.
-         * @param stdClass $args  An object of wp_nav_menu() arguments.
-         * @param int      $depth Depth of menu item. Used for padding.
-         */
-        $title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
-
-        $item_output  = $args->before;
-        if (in_array('menu-item-has-children', $classes)) {
-            $attributes .= ' class="dropdown-toggle"';
-        }
-        $item_output .= '<a' . $attributes . '>';
-        $item_output .= $args->link_before . $title . $args->link_after;
-        $item_output .= '</a>';
-        $item_output .= $args->after;
-
-        /**
-         * Filters a menu item's starting output.
-         *
-         * The menu item's starting output only includes `$args->before`, the opening `<a>`,
-         * the menu item's title, the closing `</a>`, and `$args->after`. Currently, there is
-         * no filter for modifying the opening and closing `<li>` for a menu item.
-         *
-         * @since 3.0.0
-         *
-         * @param string   $item_output The menu item's starting HTML output.
-         * @param WP_Post  $item        Menu item data object.
-         * @param int      $depth       Depth of menu item. Used for padding.
-         * @param stdClass $args        An object of wp_nav_menu() arguments.
-         */
-        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-    }
+/**
+ * Register ACF options page
+ */
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page();
 }
 
+/**
+ * Customize login screen
+ */
+//add_action( 'login_enqueue_scripts', function() { ?>
+<!--    <style type="text/css">-->
+<!--        .login {-->
+<!--            background-color: #fff;-->
+<!--        }-->
+<!---->
+<!--        .login #login h1 a {-->
+<!--            background-image: url();-->
+<!--            height: 52px;-->
+<!--            background-position: center;-->
+<!--            background-size: auto 100%;-->
+<!--            background-repeat: no-repeat;-->
+<!--            width: auto;-->
+<!--        }-->
+<!--    </style>-->
+<?php //});
 
+/**
+ * Dynamic submenu
+ */
+//add_filter('wp_get_nav_menu_items', function($items, $menu, $args) {
+//    $child_items    = array();
+//    $menu_order     = count($items);
+//    $parent_item_id = 0;
+//
+//    foreach ($items as $item) {
+//        if (in_array('menu-item-projects', $item->classes)) {
+//            $parent_item_id = $item->ID;
+//        }
+//    }
+//
+//    if ($parent_item_id > 0) {
+//        foreach (get_posts('post_type=projects_post_type&numberposts=-1&order=DESC') as $post) {
+//            $post->menu_item_parent = $parent_item_id;
+//            $post->post_type = 'nav_menu_item';
+//            $post->object = 'custom';
+//            $post->type = 'custom';
+//            $post->menu_order = ++$menu_order;
+//            $post->title = $post->post_title;
+//            $post->url = get_permalink($post->ID);
+//            array_push($child_items, $post);
+//        }
+//    }
+//
+//    return array_merge($items, $child_items);
+//}, 10, 3 );
 
+/**
+ * Ajax handler - load_more_vacancies
+ */
+//if (!function_exists('load_more_vacancies')) {
+//    add_action('wp_ajax_load_more_vacancies',        'load_more_vacancies');
+//    add_action('wp_ajax_nopriv_load_more_vacancies', 'load_more_vacancies');
+//
+//    function load_more_vacancies() {
+//        $paged          = intval(sanitize_text_field($_POST["paged"])) + 1;
+//        $posts_per_page = intval(sanitize_text_field($_POST["posts_per_page"]));
+//
+//        $arg = array(
+//            'post_type'        => 'vacancies',
+//            'order'            => 'DESC',
+//            'paged'            => $paged,
+//            'posts_per_page'   => $posts_per_page,
+//            'suppress_filters' => true,
+//            'meta_query' => array(
+//                array(
+//                    'key'     => 'status',
+//                    'value'   => 1,
+//                    'compare' => '='
+//                )
+//            )
+//        );
+//
+//        $response = array();
+//
+//        $the_query = new WP_Query($arg);
+//
+//        $no_more = ($paged == $the_query->max_num_pages) ? 1 : 0;
+//        $content = '';
+//
+//        ob_start();
+//
+//        if ($the_query->have_posts()) :
+//            while ( $the_query->have_posts() ) : $the_query->the_post();
+//                echo get_template_part('parts/vacancy_loop_item');
+//            endwhile;
+//        endif; wp_reset_query();
+//
+//        $content = ob_get_contents();
+//        ob_end_clean();
+//
+//        $response['content'] = $content;
+//        $response['paged']   = $paged;
+//        $response['no_more'] = $no_more;
+//
+//        echo wp_json_encode($response);
+//        wp_die();
+//    }
+//}
 
 
 

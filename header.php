@@ -101,7 +101,12 @@
                             'fallback_cb'    => false,
                             'walker'         => new BootstrapWalker(),
                             'theme_location' => 'main_nav',
-                            'items_wrap'     => '<ul class="navbar-nav ml-auto" data-hover="true" data-detect-overflow="true" data-copy-parent-link="true">%3$s</ul>',
+                            'items_wrap'     => '
+                                <ul class="navbar-nav ml-auto" 
+                                    data-hover="true" 
+                                    data-detect-overflow="true" 
+                                    data-copy-parent-link="true"
+                                >%3$s</ul>',
                         ));
                     }
                     ?>
