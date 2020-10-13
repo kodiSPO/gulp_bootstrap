@@ -1,3 +1,17 @@
+@media only screen and (min-width: 1200px) {
+
+    .navbar-nav[data-hover="true"] {
+        .dropdown,
+        .dropleft,
+        .dropright {
+            &:hover > .dropdown-menu {
+                display: block;
+            }
+        }
+    }
+
+}
+
 @media only screen and (min-width: 992px) {
 
     .navbar-nav > .dropdown > .dropdown-menu .dropdown-toggle {
@@ -30,16 +44,6 @@
         left: 100%;
         margin-top: 0;
         margin-left: .125rem;
-    }
-
-    .navbar-nav[data-hover="true"] {
-        .dropdown,
-        .dropleft,
-        .dropright {
-            &:hover > .dropdown-menu {
-                display: block;
-            }
-        }
     }
 
 }
