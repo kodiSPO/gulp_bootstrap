@@ -1,6 +1,7 @@
 <?php
 require_once 'inc/config.php';
 require_once 'inc/BootstrapWalker.php';
+//require_once 'blocks/init.php';
 
 /**
  * Enqueue scripts and styles
