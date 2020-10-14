@@ -2,10 +2,10 @@
 
 
 <footer>
-    <?php echo (is_front_page()) ? '' : '<a href="' . get_site_url() . '">'; ?>
-    <!-- <img src="<?php //the_field('opt_primary_logo', 'option'); ?>" alt="<?php //echo bloginfo('name'); ?>" height="52"> -->
-    <span class="logo" style="display: inline-block; padding: 12px; background-color: #eee; color: #000">LOGO</span>
-    <?php echo (is_front_page()) ? '' : '</a>'; ?>
+    <?php ThemeUtils::maybeHomeLinkStart(); ?>
+        <!-- <img src="<?php //the_field('opt_primary_logo', 'option'); ?>" alt="<?php //echo bloginfo('name'); ?>" height="52"> -->
+        <span class="logo" style="display: inline-block; padding: 12px; background-color: #eee; color: #000">LOGO</span>
+    <?php ThemeUtils::maybeHomeLinkEnd(); ?>
 
 
     <!--        --><?php //if (have_rows('opt_socials', 'option')) : ?>

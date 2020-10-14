@@ -15,7 +15,12 @@
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <div class="navbar-brand">
+            <?php ThemeUtils::maybeHomeLinkStart(); ?>
+                <!-- <img src="<?php //the_field('opt_primary_logo', 'option'); ?>" alt="<?php //echo bloginfo('name'); ?>"> -->
+                <span class="logo" style="display: inline-block; padding: 12px; background-color: #eee; color: #000">LOGO</span>
+            <?php ThemeUtils::maybeHomeLinkEnd(); ?>
+        </div>
         <button class="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
