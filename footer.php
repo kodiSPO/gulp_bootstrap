@@ -19,7 +19,7 @@
 <!--                            --><?php //endwhile; ?>
 <!--                        </ul> -->
 <!--                    --><?php //endif; ?>
-<!---->
+
                     <?php
 //                    if (has_nav_menu('footer_nav')) {
 //                        wp_nav_menu(array('theme_location' => 'footer_nav'));

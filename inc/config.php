@@ -25,8 +25,13 @@ add_action('wp_enqueue_scripts', function() {
     }
 }, 5);
 
-// GF: add support to hide field labels
+// GF: Add support to hide field labels
 add_filter('gform_enable_field_label_visibility_settings', '__return_true');
 
 // GF: Disable Automatic Scrolling On All Forms
 add_filter( 'gform_confirmation_anchor', '__return_false' );
+
+// ACF: Register options page
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page();
+}
