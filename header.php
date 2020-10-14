@@ -16,68 +16,6 @@
     <div class="row">
         <div class="col">
 
-<!--            <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-<!--                <a class="navbar-brand" href="#">Navbar</a>-->
-<!--                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--                    <span class="navbar-toggler-icon"></span>-->
-<!--                </button>-->
-<!---->
-<!--                <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!---->
-<!--                    <ul class="navbar-nav ml-auto" data-hover="true" data-detect-overflow="true" data-copy-parent-link="true">-->
-<!--                        <li><a href="#">Home</a></li>-->
-<!--                        <li><a href="#">Link</a></li>-->
-<!---->
-<!--                        <li class="dropdown">-->
-<!--                            <a class="dropdown-toggle" href="#">Dropdown</a>-->
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li><a href="#">Action</a></li>-->
-<!--                                <li><a href="#">Another action</a></li>-->
-<!---->
-<!--                                <li class="dropdown">-->
-<!--                                    <a class="dropdown-toggle" href="https://google.com" target="_blank">-->
-<!--                                        Google link-->
-<!--                                    </a>-->
-<!--                                    <ul class="dropdown-menu">-->
-<!--                                        <li><a href="#">Action</a></li>-->
-<!--                                        <li><a href="#">Another action</a></li>-->
-<!---->
-<!--                                        <li class="dropdown">-->
-<!--                                            <a class="dropdown-toggle" href="https://linkedin.com">-->
-<!--                                                Linkedin-->
-<!--                                            </a>-->
-<!--                                            <ul class="dropdown-menu">-->
-<!--                                                <li><a href="#">Action</a></li>-->
-<!--                                                <li><a href="#">Another action</a></li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!---->
-<!--                                        <li><a href="#">Action</a></li>-->
-<!--                                        <li><a href="#">Another action</a></li>-->
-<!---->
-<!--                                    </ul>-->
-<!--                                </li>-->
-<!---->
-<!--                                <li><a href="#">Action</a></li>-->
-<!--                                <li><a href="#">Another action</a></li>-->
-<!---->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!---->
-<!--                        <li><a href="#">Disabled</a></li>-->
-<!--                    </ul>-->
-<!---->
-<!--                </div>-->
-<!--            </nav>-->
-
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">Navbar</a>
