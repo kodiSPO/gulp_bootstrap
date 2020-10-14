@@ -1,5 +1,18 @@
 /* general */
+@import "general/mixins";
 @import "general/general";
+@import "general/typography";
+@import "general/wp";
+@import "general/utils";
+@import "general/buttons";
+@import "general/forms";
+@import "general/slick";
+
 /* layout */
 @import "layout/header";
 @import "layout/footer";
+
+/* templates */
+
+
+/* blocks */

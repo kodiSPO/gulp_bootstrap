@@ -1,0 +1,9 @@
+@mixin transition {
+    transition: all .3s ease-in-out;
+}
+
+@mixin bgimg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

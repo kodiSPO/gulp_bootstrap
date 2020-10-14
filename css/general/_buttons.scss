@@ -1,0 +1,35 @@
+$btn-width         : 150px;
+$btn-height        : 50px;
+$btn-border-width  : 1px;
+$btn-border-radius : $btn-height / 2;
+$btn-bg-color      : #666;
+$btn-border-color  : #666;
+$btn-text-color    : #fff;
+
+li.menu-item-btn > a,
+.wp-block-button__link,
+.gform_button,
+.btn {
+    display: inline-block;
+    box-shadow: none;
+    border-width: $btn-border-width;
+    border-style: solid;
+    cursor: pointer;
+    text-align: center;
+    padding: 0 15px;
+    text-transform: uppercase;
+    @include transition;
+
+    min-width: $btn-width;
+    height: $btn-height;
+    line-height: $btn-height - ($btn-border-width * 2);
+    border-radius: $btn-border-radius;
+    background-color: $btn-bg-color;
+    border-color: $btn-border-color;
+    color: $btn-text-color;
+
+    &:hover {
+        background-color: $btn-text-color;
+        color: $btn-bg-color;
+    }
+}

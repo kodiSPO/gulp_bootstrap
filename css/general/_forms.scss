@@ -1,0 +1,180 @@
+/*
+** placeholder
+*/
+::-webkit-input-placeholder,
+:-ms-input-placeholder,
+::placeholder {
+    color: #6e6e6e;
+}
+
+
+/*
+** wrapper
+*/
+.gform_wrapper {
+    margin: $margin-y 0;
+}
+
+.gform_fields {
+    padding: 0;
+    margin: 0 -15px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/*
+** columns
+*/
+.gfield {
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: 26px;
+}
+
+.gfield_half {
+    width: 50%;
+}
+
+.gfield_third {
+    width: 33.333333%;
+}
+
+.gfield_fourth {
+    width: 25%;
+}
+
+.gfield.gform_hidden {
+    display: none;
+}
+
+.gfield.gform_validation_container {
+    display: none;
+}
+
+@media only screen and (max-width: 639px) {
+
+    .gfield_half,
+    .gfield_third,
+    .gfield_fourt h{
+        width: 100%;
+    }
+
+}
+
+
+/*
+** label
+*/
+.gfield_label {
+    color: #666;
+    font-weight: 700;
+}
+
+.gfield_label .gfield_required {
+    color: #eb4a35;
+}
+
+.gfield.hidden_label .gfield_label {
+    display: none;
+}
+
+
+/*
+** fields
+*/
+[type=text],
+[type=password],
+[type=date],
+[type=datetime],
+[type=datetime-local],
+[type=month],
+[type=week],
+[type=email],
+[type=number],
+[type=search],
+[type=tel],
+[type=time],
+[type=url],
+[type=color],
+textarea {
+    width: 100%;
+    box-shadow: none;
+    border-width: 1px;
+    border-style: solid;
+    line-height: normal;
+    @include transition;
+
+    //
+    height: 50px;
+    border-radius: 0;
+    background-color: #fff;
+    border-color: #eee;
+    color: #666;
+    padding: 0 15px;
+
+    &:focus {
+        border-color: #666;
+    }
+}
+
+textarea {
+    resize: none;
+    padding: 12px 15px;
+    height: 150px;
+}
+
+
+/*
+** footer
+*/
+.gform_footer {
+    position: relative;
+}
+
+.gform_footer .gform_ajax_spinner {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+
+/*
+** error
+*/
+.validation_error,
+.validation_message {
+    font-size: 13px;
+    color: #eb4a35;
+}
+
+.gfield_error {
+    [type=text],
+    [type=password],
+    [type=date],
+    [type=datetime],
+    [type=datetime-local],
+    [type=month],
+    [type=week],
+    [type=email],
+    [type=number],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=url],
+    [type=color],
+    textarea {
+        border-color: #eb4a35;
+    }
+}
+
+
+/*
+** success
+*/
+.gform_confirmation_message {
+    font-size: 20px;
+    font-weight: 700;
+}

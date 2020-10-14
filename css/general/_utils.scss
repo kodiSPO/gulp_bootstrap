@@ -1,0 +1,26 @@
+.fullwidth {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.mt-unset > :first-child {
+    margin-top: 0;
+}
+
+.mb-unset > :last-child {
+    margin-top: 0;
+}
+
+.my-unset {
+    & > :first-child {
+        margin-top: 0;
+    }
+
+    & > :last-child {
+        margin-top: 0;
+    }
+}

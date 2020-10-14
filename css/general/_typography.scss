@@ -1,0 +1,108 @@
+/*
+regular   : 400
+medium    : 500
+semi-bold : 600
+bold      : 700
+black     : 900
+*/
+
+//@font-face {
+//    font-family: 'Barlow';
+//    src: url('../fonts/Barlow/Barlow-Regular.ttf') format('truetype');
+//    font-weight: 400;
+//    font-style: normal;
+//}
+
+$margin-y: 24px;
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    margin: $margin-y 0;
+}
+
+h1, .h1 {
+
+}
+
+h2, .h2 {
+
+}
+
+h3, .h3 {
+
+}
+
+h4, .h4 {
+
+}
+
+h5, .h5 {
+
+}
+
+h6, .h6 {
+
+}
+
+p {
+    margin: $margin-y 0;
+}
+
+//p:empty {
+//    min-height: 26px;
+//}
+
+a {
+    @include transition;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.blockquote {
+    p {
+
+    }
+}
+
+ul {
+    margin: $margin-y 0;
+    padding: 0;
+    list-style: none;
+}
+
+ol {
+    margin: $margin-y 0;
+    padding-left: 30px;
+}
+
+.content-wrapper ul:not(.blank-list),
+.styled-list ul,
+ul.styled-list {
+    margin: $margin-y 0;
+
+    li {
+        position: relative;
+        padding-left: 30px;
+
+        &:before {
+            content: '';
+            display: block;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+
+            //
+            top: 10px;
+            background-color: #888;
+            width: 6px;
+            height: 6px;
+        }
+    }
+}
