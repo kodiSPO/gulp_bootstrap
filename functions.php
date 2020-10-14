@@ -44,22 +44,22 @@ register_nav_menus(array(
 /**
  * Customize login screen
  */
-//add_action( 'login_enqueue_scripts', function() { ?>
-<!--    <style type="text/css">-->
-<!--        .login {-->
-<!--            background-color: #fff;-->
-<!--        }-->
-<!---->
-<!--        .login #login h1 a {-->
-<!--            background-image: url();-->
-<!--            height: 52px;-->
-<!--            background-position: center;-->
-<!--            background-size: auto 100%;-->
-<!--            background-repeat: no-repeat;-->
-<!--            width: auto;-->
-<!--        }-->
-<!--    </style>-->
-<?php //});
+//add_action( 'login_enqueue_scripts', function() {
+//    <style type="text/css">
+//        .login {
+//            background-color: #fff;
+//        }
+//
+//        .login #login h1 a {
+//            background-image: url();
+//            height: 52px;
+//            background-position: center;
+//            background-size: auto 100%;
+//            background-repeat: no-repeat;
+//            width: auto;
+//        }
+//    </style>
+//});
 
 
 
