@@ -12,7 +12,7 @@ class ThemeUtils
      */
     public static function maybeHomeLinkStart($class = '')
     {
-        if (is_front_page()) : ?>
+        if (!is_front_page()) : ?>
             <a href="<?= get_site_url(); ?>"<?= ($class) ? ' class="' . $class . '"' : ''; ?>>
         <?php endif;
     }
@@ -25,7 +25,7 @@ class ThemeUtils
      */
     public static function maybeHomeLinkEnd()
     {
-        if (is_front_page()) : ?>
+        if (!is_front_page()) : ?>
             </a>
         <?php endif;
     }
