@@ -14,16 +14,14 @@ const livereload   = require('gulp-livereload');
 gulp.task('css', function () {
     return gulp.src([
         './css/plugins/**/*.{css,scss}',
-        './css/main.scss',
-        './templates/**/*.scss',
-        './blocks/**/*.scss'
+        './css/main.scss'
     ])
         .pipe(sourcemaps.init())
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(concat('theme.min.css'))
         .pipe(autoprefixer())
         .pipe(cleanCSS())
-        .pipe(sourcemaps.write('./map'))
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist'))
         .pipe(livereload());
 });
@@ -33,14 +31,12 @@ gulp.task('js', function () {
     return gulp.src([
         './js/plugins/**/*.js',
         './js/main.js',
-        './js/parts/**/*.js',
-        './templates/**/*.js',
-        './blocks/**/*.js'
+        './js/parts/**/*.js'
     ])
         .pipe(sourcemaps.init())
         .pipe(concat('theme.min.js'))
         .pipe(terser())
-        .pipe(sourcemaps.write('./map'))
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist'))
         .pipe(livereload());
 });
@@ -49,16 +45,12 @@ gulp.task('js', function () {
 gulp.task('default', function() {
     livereload.listen();
     gulp.watch([
-        './css/**/*.{css,scss}',
-        './templates/**/*.scss',
-        './blocks/**/*.scss'
+        './css/**/*.{css,scss}'
     ], gulp.series(
         'css'
     ));
     gulp.watch([
-        './js/**/*.js',
-        './templates/**/*.js',
-        './blocks/**/*.js'
+        './js/**/*.js'
     ], gulp.series(
         'js',
     ));

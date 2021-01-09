@@ -2,7 +2,7 @@
 require_once 'inc/config.php';
 require_once 'inc/BootstrapWalker.php';
 require_once 'inc/ThemeUtils.php';
-//require_once 'blocks/init.php';
+require_once 'blocks/init.php';
 
 /**
  * Enqueue scripts and styles
@@ -22,11 +22,11 @@ add_action('wp_enqueue_scripts', function() {
 /**
  * Enqueue admin scripts and styles
  */
-//add_action( 'admin_enqueue_scripts', function() {
-//    $url     = get_template_directory_uri() . '/admin/';
-//    $version = '1.0.0';
-//    wp_enqueue_style('admin-css', $url . 'admin.css', array(), $version);
-//});
+add_action( 'admin_enqueue_scripts', function() {
+    $url     = get_template_directory_uri() . '/admin/';
+    $version = '1.0.0';
+    wp_enqueue_style('admin-css', $url . 'admin.css', array(), $version);
+});
 
 /**
  * Add custom image sizes

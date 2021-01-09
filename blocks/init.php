@@ -13,7 +13,7 @@ function theme_acf_register_block_type($name, $title) {
     acf_register_block_type(array(
         'name'            => 'custom_acf_block_' . $name,
         'title'           => $title,
-        'render_template' => get_stylesheet_directory().'/blocks/'.$name.'/'.$name.'.php',
+        'render_template' => get_stylesheet_directory().'/blocks/'.$name.'.php',
         'category'        => 'custom_acf_blocks',
         'mode'            => 'edit',
         'icon'            => array(
